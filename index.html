@@ -79,6 +79,15 @@
     function gtag() { dataLayer.push(arguments) }
     gtag('js', new Date())
     gtag('config', 'UA-332367-25')
+    
+    window.__clickEvent = function(label) {
+      gtag('event', 'click', {
+        'event_category': 'external',
+        'event_label': label,
+        'value': 1
+      })
+    }
+    
   </script>
 </head>
 <body>
@@ -95,7 +104,8 @@
   
   <span class="tj-nowrap">
     
-    <a class="icon" href="https://github.com/ratiofu" title="ratiofu">
+    <a class="icon" href="https://github.com/ratiofu" title="ratiofu"
+       onclick="__clickEvent('github')">
       <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
            width="24" height="24">
         <path
@@ -103,7 +113,8 @@
       </svg>
     </a>
     
-    <a class="icon" href="https://twitter.com/ratiofu" title="ratiofu">
+    <a class="icon" href="https://twitter.com/ratiofu" title="ratiofu"
+       onclick="__clickEvent('twitter')">
       <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
            width="24" height="24">
         <path

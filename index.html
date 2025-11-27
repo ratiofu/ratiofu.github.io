@@ -1,226 +1,193 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Thomas Jung - @ratiofu</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <style type="text/css">
-            * {
-                box-sizing: border-box;
+  <head>
+    <meta charset="utf-8" />
+    <title>Thomas Jung - @ratiofu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        width: 100vw;
+        height: 100%;
+        height: 100vh;
+        overflow: hidden;
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Oxygen,
+          Ubuntu,
+          Cantarell,
+          "Open Sans",
+          "Helvetica Neue",
+          sans-serif;
+        color: #222;
+        background-color: #333;
+        margin: 0;
+        padding: 0;
+      }
+
+      h1,
+      h2,
+      p {
+        font-weight: 300;
+        margin: 0;
+        padding: 0;
+      }
+
+      h1 {
+        text-transform: uppercase;
+      }
+
+      .tj-grid {
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        width: 100%;
+        height: 100%;
+      }
+
+      .tj-profile-frame {
+        padding: 2em 3em;
+        background-color: #eee;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        text-align: center;
+      }
+
+      .tj-profile-image {
+        width: 15em;
+        border-radius: 15em;
+        margin-bottom: 1em;
+        border: 2px solid #fff;
+      }
+
+      a.icon,
+      svg {
+        display: inline-block;
+        vertical-align: text-top;
+        padding: 0;
+        margin: 0;
+      }
+
+      svg {
+        width: 2em;
+        height: 2em;
+      }
+
+      svg path {
+        fill: currentColor;
+      }
+
+      a,
+      a:visited {
+        color: #2d873b;
+        text-decoration: none;
+      }
+
+      .tj-nowrap {
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tj-grid">
+      <div class="tj-profile-frame">
+        <img
+          class="tj-profile-image"
+          src="images/profile.jpg"
+          alt="Thomas Jung Profile Picture"
+          fetchpriority="high"
+        />
+
+        <h1>Thomas Jung</h1>
+        <h2>Sr. Director Engineering &amp;<br />App Architect</h2>
+        <h2 class="tj-nowrap">
+          <a href="https://clari.com">Clari</a>
+        </h2>
+
+        &nbsp;
+
+        <p class="tj-nowrap">
+          <a class="icon" href="https://github.com/ratiofu" title="ratiofu">
+            <svg
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+            >
+              <path
+                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+              ></path>
+            </svg>
+          </a>
+        </p>
+      </div>
+    </div>
+    <script>
+      !(function (t, e) {
+        var o, n, p, r;
+        e.__SV ||
+          (window.posthog && window.posthog.__loaded) ||
+          ((window.posthog = e),
+          (e._i = []),
+          (e.init = function (i, s, a) {
+            function g(t, e) {
+              var o = e.split(".");
+              (2 == o.length && ((t = t[o[0]]), (e = o[1])),
+                (t[e] = function () {
+                  t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+                }));
             }
-
-            html,
-            body {
-                width: 100%;
-                width: 100vw;
-                height: 100%;
-                height: 100vh;
-                overflow: hidden;
-                font-family:
-                    system-ui,
-                    -apple-system,
-                    BlinkMacSystemFont,
-                    "Segoe UI",
-                    Roboto,
-                    Oxygen,
-                    Ubuntu,
-                    Cantarell,
-                    "Open Sans",
-                    "Helvetica Neue",
-                    sans-serif;
-                color: #222;
-                background-color: #333;
-                margin: 0;
-                padding: 0;
-            }
-
-            h1,
-            h2,
-            p {
-                font-weight: 300;
-                margin: 0;
-                padding: 0;
-            }
-
-            h1 {
-                text-transform: uppercase;
-            }
-
-            .tj-grid {
-                display: grid;
-                justify-content: center;
-                align-content: center;
-                width: 100%;
-                height: 100%;
-            }
-
-            .tj-profile-frame {
-                padding: 2em 3em;
-                background-color: #eee;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-                text-align: center;
-            }
-
-            .tj-profile-image {
-                width: 15em;
-                border-radius: 15em;
-                margin-bottom: 1em;
-                border: 2px solid #fff;
-            }
-
-            a.icon,
-            svg {
-                display: inline-block;
-                vertical-align: text-top;
-                padding: 0;
-                margin: 0;
-            }
-
-            svg {
-                width: 2em;
-                height: 2em;
-            }
-
-            svg path {
-                fill: currentColor;
-            }
-
-            a,
-            a:visited {
-                color: #2d873b;
-                text-decoration: none;
-            }
-
-            .tj-nowrap {
-                white-space: nowrap;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="tj-grid">
-            <div class="tj-profile-frame">
-                <img
-                    class="tj-profile-image"
-                    src="images/profile.jpg"
-                    alt="Thomas Jung Profile Picture"
-                    fetchpriority="high"
-                />
-
-                <h1>Thomas Jung</h1>
-                <h2>Co-founder and CTO</h2>
-                <h2 class="tj-nowrap">
-                    <a href="https://www.dealpoint.io/?src=ratiofu"
-                        >DealPoint.io</a
-                    >
-                </h2>
-
-                &nbsp;
-
-                <p class="tj-nowrap">
-                    <a
-                        class="icon"
-                        href="https://github.com/ratiofu"
-                        title="ratiofu"
-                    >
-                        <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                        >
-                            <path
-                                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
-                            ></path>
-                        </svg>
-                    </a>
-
-                    <a
-                        class="icon"
-                        href="https://twitter.com/ratiofu"
-                        title="ratiofu"
-                    >
-                        <svg
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                        >
-                            <path
-                                d="M12,0C18.623,0 24,5.377 24,12C24,18.623 18.623,24 12,24C5.377,24 0,18.623 0,12C0,5.377 5.377,0 12,0ZM9.804,18.33C15.126,18.33 18.036,13.92 18.036,10.098C18.036,9.972 18.036,9.846 18.03,9.726C18.594,9.318 19.086,8.808 19.476,8.226C18.96,8.454 18.402,8.61 17.814,8.682C18.414,8.322 18.87,7.758 19.086,7.08C18.528,7.41 17.91,7.65 17.25,7.782C16.722,7.218 15.972,6.87 15.138,6.87C13.542,6.87 12.246,8.166 12.246,9.762C12.246,9.99 12.27,10.212 12.324,10.422C9.918,10.302 7.788,9.15 6.36,7.398C6.114,7.824 5.97,8.322 5.97,8.85C5.97,9.852 6.48,10.74 7.26,11.256C6.786,11.244 6.342,11.112 5.952,10.896C5.952,10.908 5.952,10.92 5.952,10.932C5.952,12.336 6.948,13.5 8.274,13.77C8.034,13.836 7.776,13.872 7.512,13.872C7.326,13.872 7.146,13.854 6.966,13.818C7.332,14.97 8.4,15.804 9.666,15.828C8.676,16.602 7.428,17.064 6.072,17.064C5.838,17.064 5.61,17.052 5.382,17.022C6.648,17.85 8.172,18.33 9.804,18.33Z"
-                            ></path>
-                        </svg>
-                    </a>
-                </p>
-            </div>
-        </div>
-        <script>
-            !(function (t, e) {
-                var o, n, p, r;
-                e.__SV ||
-                    (window.posthog && window.posthog.__loaded) ||
-                    ((window.posthog = e),
-                    (e._i = []),
-                    (e.init = function (i, s, a) {
-                        function g(t, e) {
-                            var o = e.split(".");
-                            (2 == o.length && ((t = t[o[0]]), (e = o[1])),
-                                (t[e] = function () {
-                                    t.push(
-                                        [e].concat(
-                                            Array.prototype.slice.call(
-                                                arguments,
-                                                0,
-                                            ),
-                                        ),
-                                    );
-                                }));
-                        }
-                        (((p = t.createElement("script")).type =
-                            "text/javascript"),
-                            (p.crossOrigin = "anonymous"),
-                            (p.async = !0),
-                            (p.src =
-                                s.api_host.replace(
-                                    ".i.posthog.com",
-                                    "-assets.i.posthog.com",
-                                ) + "/static/array.js"),
-                            (r =
-                                t.getElementsByTagName(
-                                    "script",
-                                )[0]).parentNode.insertBefore(p, r));
-                        var u = e;
-                        for (
-                            void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
-                                u.people = u.people || [],
-                                u.toString = function (t) {
-                                    var e = "posthog";
-                                    return (
-                                        "posthog" !== a && (e += "." + a),
-                                        t || (e += " (stub)"),
-                                        e
-                                    );
-                                },
-                                u.people.toString = function () {
-                                    return u.toString(1) + ".people (stub)";
-                                },
-                                o =
-                                    "init Rr Mr fi Cr Ar ci Tr Fr capture Mi calculateEventProperties Lr register register_once register_for_session unregister unregister_for_session Hr getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Ur jr createPersonProfile zr kr Br opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing Dr debug M Nr getPageViewId captureTraceFeedback captureTraceMetric $r".split(
-                                        " ",
-                                    ),
-                                n = 0;
-                            n < o.length;
-                            n++
-                        )
-                            g(u, o[n]);
-                        e._i.push([i, s, a]);
-                    }),
-                    (e.__SV = 1));
-            })(document, window.posthog || []);
-            posthog.init("phc_IjZZlUT5puEa2LuHe8qN8vSIgdSZfSI0jnL7XV7toOz", {
-                api_host: "https://us.i.posthog.com",
-                defaults: "2025-05-24",
-                person_profiles: "identified_only", // or 'always' to create profiles for anonymous users as well
-            });
-        </script>
-    </body>
+            (((p = t.createElement("script")).type = "text/javascript"),
+              (p.crossOrigin = "anonymous"),
+              (p.async = !0),
+              (p.src =
+                s.api_host.replace(".i.posthog.com", "-assets.i.posthog.com") +
+                "/static/array.js"),
+              (r = t.getElementsByTagName("script")[0]).parentNode.insertBefore(
+                p,
+                r,
+              ));
+            var u = e;
+            for (
+              void 0 !== a ? (u = e[a] = []) : (a = "posthog"),
+                u.people = u.people || [],
+                u.toString = function (t) {
+                  var e = "posthog";
+                  return (
+                    "posthog" !== a && (e += "." + a),
+                    t || (e += " (stub)"),
+                    e
+                  );
+                },
+                u.people.toString = function () {
+                  return u.toString(1) + ".people (stub)";
+                },
+                o =
+                  "init Rr Mr fi Cr Ar ci Tr Fr capture Mi calculateEventProperties Lr register register_once register_for_session unregister unregister_for_session Hr getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Ur jr createPersonProfile zr kr Br opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing Dr debug M Nr getPageViewId captureTraceFeedback captureTraceMetric $r".split(
+                    " ",
+                  ),
+                n = 0;
+              n < o.length;
+              n++
+            )
+              g(u, o[n]);
+            e._i.push([i, s, a]);
+          }),
+          (e.__SV = 1));
+      })(document, window.posthog || []);
+      posthog.init("phc_IjZZlUT5puEa2LuHe8qN8vSIgdSZfSI0jnL7XV7toOz", {
+        api_host: "https://us.i.posthog.com",
+        defaults: "2025-05-24",
+        person_profiles: "identified_only", // or 'always' to create profiles for anonymous users as well
+      });
+    </script>
+  </body>
 </html>

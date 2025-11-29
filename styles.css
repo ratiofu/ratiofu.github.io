@@ -21,8 +21,8 @@ body {
     "Open Sans",
     "Helvetica Neue",
     sans-serif;
-  color: #222;
-  background-color: #333;
+  color: #eee;
+  background: linear-gradient(0deg, #121, #242 50%, #353);
   margin: 0;
   padding: 0;
 }
@@ -33,10 +33,6 @@ p {
   font-weight: 300;
   margin: 0;
   padding: 0;
-}
-
-h1 {
-  text-transform: uppercase;
 }
 
 .tj-grid {
@@ -50,13 +46,14 @@ h1 {
 .tj-profile-frame {
   padding: 2em 3em;
   background-color: #eee;
+  color: #222;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   text-align: center;
 }
 
 .tj-profile-image {
-  width: 15em;
-  border-radius: 15em;
+  width: 14em;
+  border-radius: 50%;
   margin-bottom: 1em;
   border: 2px solid #fff;
 }

@@ -52,7 +52,10 @@ input[aria-invalid="true"]{border-color:var(--bad);background:color-mix(in srgb,
 .ck-list input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--good)}
 .ck-list a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
 .ck-list input:checked ~ span.t{color:var(--muted);text-decoration:line-through}
-.ck-grid{display:grid;align-items:start;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:14px}
+.ck-one{display:grid;gap:0}
+.ck-one .ck-grp{padding:16px 0;border-top:1px solid var(--line)}
+.ck-one .ck-grp:first-child{padding-top:0;border-top:0}
+.ck-one .ck-grp:last-child{padding-bottom:0}
 .chart{position:relative;--s-prin:#2a78d6;--s-int:#eb6834}
 .key{--s-prin:#2a78d6;--s-int:#eb6834}
 .chart .xh{stroke:var(--muted);stroke-width:1;stroke-dasharray:3 3}
@@ -172,7 +175,7 @@ button:hover{background:var(--accent-soft)}
       <div class="ck-prog"><span id="ckCount">0 of 0 done</span><span class="ck-bar" aria-hidden="true"><i id="ckBar"></i></span><button type="button" id="ckClear">Clear all</button></div>
     </div>
     <p class="note">Send all documents to Tabitha Solano. Both buyers take title and both sign the note and the trust deed. Do not send Social Security numbers by plain email. Send money only directly to WFG National Title, not the seller. Confirm payment instructions with WFG National Title.</p>
-    <div class="ck-grid" id="ckGroups"></div>
+    <div class="panel ck-one" id="ckGroups"></div>
   </section>
 
   <section>
@@ -496,7 +499,7 @@ function ckProgress(){
   CK.forEach(g=>{ const d = g.items.filter(i=>ckState[i[0]]).length; $("ckc-"+g.id).textContent = `${d}/${g.items.length}`; });
 }
 function renderChecklist(){
-  $("ckGroups").innerHTML = CK.map(g=>`<div class="panel ck-grp"><h3>${g.title}<span class="due">${g.due}</span><span class="cnt" id="ckc-${g.id}"></span></h3>${g.note?`<p class="note" style="margin:0">${g.note}</p>`:""}<ul class="ck-list">` +
+  $("ckGroups").innerHTML = CK.map(g=>`<div class="ck-grp"><h3>${g.title}<span class="due">${g.due}</span><span class="cnt" id="ckc-${g.id}"></span></h3>${g.note?`<p class="note" style="margin:0">${g.note}</p>`:""}<ul class="ck-list">` +
     g.items.map(([id,text])=>`<li><label><input type="checkbox" data-ck="${id}"${ckState[id]?" checked":""}><span class="t">${text}</span></label></li>`).join("") + `</ul></div>`).join("");
   $("ckGroups").querySelectorAll("input[data-ck]").forEach(el=>el.addEventListener("change", e=>{
     const id = e.target.dataset.ck; if(e.target.checked) ckState[id] = true; else delete ckState[id]; ckSave(); ckProgress();

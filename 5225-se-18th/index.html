@@ -484,15 +484,8 @@ const CK = [
     ["d2","Bank and investment statements for the last 2 months, all pages, for every account used for the down payment, closing costs, or reserves (sent by the bank, or a bank-completed Verification of Deposit)"],
     ["e1","List of all monthly debts: car, student, credit card, child support, other loans"]]},
   {id:"g", title:"Property", due:"Before closing", items:[
-    ["g1","Inspection within 10 business days after acceptance; full report to Tabitha and Thomas (or sign the no-inspection acknowledgment)"],
     ["g2","Insurance binder that meets the insurance requirements, with Tabitha Solano as mortgagee; at least 5 days before closing"],
-    ["g3","Earthquake coverage quote (if required)"]]},
-  {id:"h", title:"Final steps", due:"2 to 10 days before closing", items:[
-    ["h1","Updated pay stubs, dated within 30 days of closing"],
-    ["h2","Updated bank statements, dated within 30 days of closing"],
-    ["h3","Employer confirms employment again"],
-    ["h4","Down payment and closing funds wired to WFG and cleared, 2 business days before closing"],
-    ["h5","Sign the escrow and collection escrow instructions; set up the monthly payment"]]}
+    ["g3","Earthquake coverage quote (if required)"]]}
 ];
 let ckState = {};
 try { ckState = JSON.parse(localStorage.getItem(CK_KEY) || "{}") || {}; } catch(e) { ckState = {}; }

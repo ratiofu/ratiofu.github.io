@@ -38,6 +38,22 @@ input[aria-invalid="true"]{border-color:var(--bad);background:color-mix(in srgb,
 .hint.bad{color:var(--bad);font-weight:500}
 .alert{border:1px solid var(--bad);background:color-mix(in srgb,var(--bad) 7%,var(--surface));color:var(--bad);border-radius:6px;padding:8px 12px;font-size:.88rem;margin:0}
 .stale #loanOut,.stale #balloonOut,.stale #rateOut,.stale #cdTerms,.stale #cdCash,.stale #cdCosts,.stale #cdSummary,.stale #sched,.stale #piChart{opacity:.45}
+.ck-head{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between}
+.ck-prog{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--muted)}
+.ck-bar{width:160px;height:8px;border-radius:999px;background:var(--line);overflow:hidden}
+.ck-bar i{display:block;height:100%;background:var(--good);border-radius:999px;width:0}
+.ck-grp{display:grid;gap:6px;align-content:start}
+.ck-grp h3{margin:0;font-size:1rem;display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline}
+.ck-grp h3 .due{font-size:.8rem;font-weight:500;color:var(--muted)}
+.ck-grp h3 .cnt{font-size:.8rem;font-weight:500;color:var(--muted);margin-left:auto;font-family:var(--mono)}
+.ck-list{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.ck-list label{display:grid;grid-template-columns:20px 1fr auto;gap:10px;align-items:start;padding:7px 8px;border-radius:6px;cursor:pointer;font-size:.92rem;text-transform:none;letter-spacing:0;color:var(--ink)}
+.ck-list label:hover{background:var(--accent-soft)}
+.ck-list input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--good)}
+.ck-list input:checked ~ span.t{color:var(--muted);text-decoration:line-through}
+.who{font-size:.72rem;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);white-space:nowrap;text-transform:uppercase;letter-spacing:.04em}
+@media (max-width:520px){.ck-list label{grid-template-columns:20px 1fr}.ck-list .who{grid-column:2;justify-self:start}}
+.ck-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:14px}
 .chart{position:relative;--s-prin:#2a78d6;--s-int:#eb6834}
 .key{--s-prin:#2a78d6;--s-int:#eb6834}
 .chart .xh{stroke:var(--muted);stroke-width:1;stroke-dasharray:3 3}
@@ -149,6 +165,16 @@ button:hover{background:var(--accent-soft)}
     </div>
     <div class="scroll"><table id="cdCosts"></table></div>
     <div class="scroll"><table id="cdSummary"></table></div>
+  </section>
+
+  <section id="checklist">
+    <div class="ck-head">
+      <h2>Application checklist</h2>
+      <div class="ck-prog"><span id="ckCount">0 of 0 done</span><span class="ck-bar" aria-hidden="true"><i id="ckBar"></i></span><button type="button" id="ckClear">Clear all</button></div>
+    </div>
+    <p class="note">Both of you take title and both sign the note and the trust deed. The husband's income qualifies the loan. Give the documents to Tabitha Solano or to WFG National Title. Do not send Social Security numbers by plain email. Your check marks are saved only in this browser on this device.</p>
+    <p class="note"><strong>Wire fraud:</strong> before you wire money, call WFG National Title at a phone number that you find yourself and confirm the wire instructions. Do not use wire instructions that you get only by email.</p>
+    <div class="ck-grid" id="ckGroups"></div>
   </section>
 
   <section>
@@ -434,6 +460,80 @@ $("copyCsv").addEventListener("click", async ()=>{
 $("viewBalloon").addEventListener("click",()=>{fullView=false;$("viewBalloon").setAttribute("aria-pressed","true");$("viewFull").setAttribute("aria-pressed","false");render();});
 $("viewFull").addEventListener("click",()=>{fullView=true;$("viewFull").setAttribute("aria-pressed","true");$("viewBalloon").setAttribute("aria-pressed","false");render();});
 document.querySelectorAll(".inputs input").forEach(el=>el.addEventListener("input",render));
+
+// Application checklist; check marks stay in this browser (localStorage).
+const CK_KEY = "buyerChecklist-v1";
+const CK = [
+  {id:"a", title:"Identity and authorization", due:"Before the offer is accepted", items:[
+    ["a1","Both","Government photo ID (driver license or passport)"],
+    ["a2","Both","Signed authorization to pull your credit reports"],
+    ["a3","Both","Signed IRS Form 4506-C for your 2024 and 2025 tax transcripts (one form if you file jointly)"],
+    ["a4","Both","Signed authorization to verify employment, income, and bank accounts"],
+    ["a5","Both","Completed application: personal information, current and prior addresses, employment, income, housing payment"],
+    ["a6","Both","Answers to the application questions: bankruptcy, foreclosure, judgments, child support, co-signed debts, other real estate, gifts"],
+    ["a7","Husband","Written answer: why seller financing now, and what must change (and when) for a bank to refinance"]]},
+  {id:"b", title:"Husband's income", due:"By Dec 1, 2026", items:[
+    ["b1","Husband","Pay stubs for the most recent 30 days, with year-to-date totals"],
+    ["b2","Husband","W-2s for 2024 and 2025"],
+    ["b3","Both","Complete 1040 tax returns for 2024 and 2025: all pages and all schedules (joint returns if you file jointly)"],
+    ["b4","Husband","If on the returns: Schedules B, C, D, E; Form 8949; Forms 3921 and 3922; all K-1s"],
+    ["b5","Husband","If you own 25% or more of a business: its 2024 and 2025 returns and a year-to-date profit and loss statement"],
+    ["b6","Husband","Equity compensation summary: plan type, grant dates, vesting schedule, amounts vested and sold 2024 to 2026, private or public company, distributions"],
+    ["b7","Husband","Offer letter or current compensation letter: base salary, bonus plan, equity"],
+    ["b8","Husband","Employer sends a written verification of employment directly to Tabitha or WFG: title, start date, base salary"],
+    ["b9","Husband","Explanation of any employment gap or large income change in the last 2 years"]]},
+  {id:"c", title:"Wife", due:"By Dec 1, 2026", items:[
+    ["c1","Wife","If you have income that you want counted: the same income documents as above. If not: a short statement that no income is counted"],
+    ["c2","Wife","Explanation of any late payment or collection on your credit report in the last 2 years (if any)"]]},
+  {id:"d", title:"Funds to close", due:"By Dec 1, 2026", items:[
+    ["d1","Both","Earnest money ($7,500) in escrow at WFG within 3 business days after acceptance"],
+    ["d2","Both","Statements for the last 2 months, all pages, for every account used for the down payment, closing costs, or reserves (sent by the bank, or a bank-completed Verification of Deposit)"],
+    ["d3","Both","Source of each deposit over $5,000 that is not payroll"],
+    ["d4","Both","Gift letter and proof of transfer (only if part of the money is a gift)"],
+    ["d5","Both","Proof of sale proceeds or retirement withdrawal (only if used)"],
+    ["d6","Both","Reserves after closing: at least 6 months of the full monthly payment (about $35,000)"]]},
+  {id:"e", title:"Debts and other real estate", due:"By Dec 1, 2026", items:[
+    ["e1","Both","List of all monthly debts: car, student, credit card, child support, other loans"],
+    ["e2","Both","Idaho property: mortgage statement, current leases, 2 months of rent deposits, insurance declarations, property tax bill"],
+    ["e3","Both","Current housing: lease or mortgage statement, and 12 months of on-time payments"]]},
+  {id:"f", title:"Credit", due:"By Dec 1, 2026", items:[
+    ["f1","Both","Tabitha pulls tri-merge credit reports for both of you (with your signed authorization)"],
+    ["f2","Both","Written explanation of late payments, collections, or credit inquiries in the last 2 years"]]},
+  {id:"g", title:"Property", due:"Before closing", items:[
+    ["g1","Both","Inspection within 10 business days after acceptance; full report to Tabitha (or sign the no-inspection acknowledgment)"],
+    ["g2","Both","Insurance binder that meets the insurance requirements, with Tabitha as mortgagee; at least 5 days before closing"],
+    ["g3","Both","Earthquake coverage quote (if required)"]]},
+  {id:"h", title:"Final steps", due:"2 to 10 days before closing", items:[
+    ["h1","Husband","Updated pay stub, dated within 30 days of closing"],
+    ["h2","Both","Updated bank statements, dated within 30 days of closing"],
+    ["h3","Husband","Employer confirms employment again"],
+    ["h4","Both","Down payment and closing funds wired to WFG and cleared, 2 business days before closing"],
+    ["h5","Both","Sign the escrow and collection escrow instructions; set up the monthly payment"]]}
+];
+let ckState = {};
+try { ckState = JSON.parse(localStorage.getItem(CK_KEY) || "{}") || {}; } catch(e) { ckState = {}; }
+const ckSave = () => { try { localStorage.setItem(CK_KEY, JSON.stringify(ckState)); } catch(e) {} };
+function ckProgress(){
+  const all = CK.flatMap(g=>g.items.map(i=>i[0])), done = all.filter(id=>ckState[id]).length;
+  $("ckCount").textContent = `${done} of ${all.length} done`;
+  $("ckBar").style.width = (all.length ? done/all.length*100 : 0) + "%";
+  CK.forEach(g=>{ const d = g.items.filter(i=>ckState[i[0]]).length; $("ckc-"+g.id).textContent = `${d}/${g.items.length}`; });
+}
+function renderChecklist(){
+  $("ckGroups").innerHTML = CK.map(g=>`<div class="panel ck-grp"><h3>${g.title}<span class="due">${g.due}</span><span class="cnt" id="ckc-${g.id}"></span></h3><ul class="ck-list">` +
+    g.items.map(([id,who,text])=>`<li><label><input type="checkbox" data-ck="${id}"${ckState[id]?" checked":""}><span class="t">${text}</span><span class="who">${who}</span></label></li>`).join("") + `</ul></div>`).join("");
+  $("ckGroups").querySelectorAll("input[data-ck]").forEach(el=>el.addEventListener("change", e=>{
+    const id = e.target.dataset.ck; if(e.target.checked) ckState[id] = true; else delete ckState[id]; ckSave(); ckProgress();
+  }));
+  ckProgress();
+}
+let ckArm = null;
+$("ckClear").addEventListener("click", ()=>{
+  const b = $("ckClear");
+  if(!ckArm){ b.textContent = "Click again to clear"; ckArm = setTimeout(()=>{ b.textContent = "Clear all"; ckArm = null; }, 3000); return; }
+  clearTimeout(ckArm); ckArm = null; b.textContent = "Clear all"; ckState = {}; ckSave(); renderChecklist();
+});
+renderChecklist();
 
 // Property tax history (paid with the 3% discount) and the estimate to the balloon date.
 const TAX_HIST = [[2023,7631.41],[2024,7936.83],[2025,8233.21],[2026,8691.93]];

@@ -50,6 +50,7 @@ input[aria-invalid="true"]{border-color:var(--bad);background:color-mix(in srgb,
 .ck-list label{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:start;padding:7px 8px;border-radius:6px;cursor:pointer;font-size:.92rem;text-transform:none;letter-spacing:0;color:var(--ink)}
 .ck-list label:hover{background:var(--accent-soft)}
 .ck-list input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--good)}
+.ck-list a{color:var(--accent);text-decoration:underline;text-underline-offset:2px}
 .ck-list input:checked ~ span.t{color:var(--muted);text-decoration:line-through}
 .ck-grid{display:grid;align-items:start;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:14px}
 .chart{position:relative;--s-prin:#2a78d6;--s-int:#eb6834}
@@ -465,7 +466,7 @@ const CK = [
   {id:"a", title:"Identity and authorization", due:"Before the offer is accepted", items:[
     ["a1","Government photo ID (driver license or passport) for each of you"],
     ["a2","Signed authorization to pull your credit reports, for each of you"],
-    ["a3","Signed IRS Form 4506-C for your 2024 and 2025 tax transcripts (one form if you file jointly)"],
+    ["a3",'Signed <a href="https://www.irs.gov/pub/irs-pdf/f4506c.pdf" target="_blank" rel="noopener">IRS Form 4506-C</a> for your 2024 and 2025 tax transcripts (one form if you file jointly)'],
     ["a4","Signed authorization to verify employment, income, and bank accounts"],
     ["a5","Completed application: personal information, current and prior addresses, employment, income, housing payment"],
     ["a6","Answers to the application questions: bankruptcy, foreclosure, judgments, child support, co-signed debts, other real estate, gifts"],
